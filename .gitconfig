@@ -12,8 +12,8 @@
 	path = ~/.gitconfig.local
 [init]
 	defaultBranch = main
-[credential]
-        helper = /usr/local/bin/git-credential-manager
-        credentialStore = gpg
-[credential "https://gitcode.com"]
-	provider = generic
+; [credential]
+;         helper = /usr/local/bin/git-credential-manager
+;         credentialStore = gpg
+; [credential "https://gitcode.com"]
+; 	provider = generic
