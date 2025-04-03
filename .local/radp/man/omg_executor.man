@@ -1,0 +1,74 @@
+1. 安装: -f install -n xxx [-v x.y.z]
+1) rbenv
+    -f install -n rbenv
+        export PATH="$HOME/.rbenv/bin:$PATH"
+        eval "$(rbenv init -)"
+2) ruby
+    -f install -n ruby [-v x.y.z]
+3) jenv
+    -f install -n jenv
+        export PATH="$HOME/.jenv/bin:$PATH"
+        eval "$(jenv init -)"
+4) jdk
+    -f install -n openjdk [-v 8]
+5) lazygit
+    -f install -n lazygit
+6) goenv
+    -f install -n goenv
+        export GOENV_ROOT="$HOME/.goenv"
+        export PATH="$GOENV_ROOT/bin:$PATH"
+7) go
+    -f install -n go [-v 1.23.0]
+        eval "$(goenv init -)"
+        export PATH="$GOROOT/bin:$PATH"
+        export PATH="$PATH:$GOPATH/bin"
+8) bat
+    -f install -n bat
+9) tig
+    -f install -n tig
+10) shellcheck
+    -f install -n shellcheck
+11) colorls
+    -f install -n colorls
+        source "$(dirname "$(gem which colorls)")"/tab_complete.sh
+12) maven
+    -f install -n maven [-v x.x.x]
+        export M2_HOME=/opt/maven/current
+        PATH=$M2_HOME/bin:$PATH
+13) neovim
+    -f install -n neovim
+        alias nnvim='NVIM_APPNAME="nvim/kickstart-modular.nvim" nvim'
+14) nvm
+    -f install -n nvm
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+15) nodejs
+    -f install -n nodejs [-v x.x.x]
+16) pyenv
+    -f install -n pyenv
+        export PYENV_ROOT="$HOME/.pyenv"
+        export PATH="$PYENV_ROOT/bin:$PATH"
+        eval "$(pyenv init --path)"
+17) python
+    -f install -n python [-v x.x.x]
+18) rbenv
+    -f install -n rbenv
+    export PATH="$HOME"/.rbenv/bin:$PATH
+    eval "$(rbenv init -)"
+19) ruby
+    -f install -n ruby
+20) telepresence
+    -f install -n telepresence [-v x.x.x]
+21) yadm
+    -f install -n yadm
+22) zoxide
+    -f install -n zoxide
+    eval "$(zoxide init bash)"
+    或
+    eval "$(zoxide init zsh)"
+23) zsh
+    -f install -n zsh [-v x.x.x]
+
+2. bootstrap
+    -f bootstrap

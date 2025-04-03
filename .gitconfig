@@ -1,0 +1,19 @@
+[user]
+	name = xooooooooox
+	email = xozozsos@gmail.com
+[log]
+	decorate = short
+	abbrevCommit = true
+[core]
+	quotepath = false
+	excludedsfile = ~/.gitignore_global
+	autocrlf = input
+[include]
+	path = ~/.gitconfig.local
+[init]
+	defaultBranch = main
+[credential]
+        helper = /usr/local/bin/git-credential-manager
+        credentialStore = gpg
+[credential "https://gitcode.com"]
+	provider = generic

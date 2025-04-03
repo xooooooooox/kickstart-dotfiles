@@ -1,0 +1,12 @@
+# 命令执行 docker-compose -f docker-compose.yml up -d
+services:
+  frps:
+    image: fatedier/frps:v0.60.0
+    hostname: frps
+    container_name: frps
+    volumes:
+      - "./frps.toml:/frps.toml"
+    command:
+      - "-c"
+      - "/frps.toml"
+    network_mode: "host"

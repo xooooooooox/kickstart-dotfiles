@@ -1,0 +1,63 @@
+
+# .bashrc
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#---------------------------------- alias --------------------------------------------#
+omgalias(){
+  _omg_alias_common
+  _omg_alias_docker
+  _omg_alias_proxy
+}
+
+#---------------------------------- path --------------------------------------------#
+omgpath(){
+  # general
+  _omgp_custom_bin_path
+  # _omgp_pyenv
+  # _omgp_nvm
+  _omgp_rbenv
+  _omgp_jenv
+  # _omgp_goenv
+}
+#---------------------------------- setup pkg ---------------------------------------#
+omgsetup(){
+  _omgsetup_vfox
+  # _omgsetup_pyenv
+  _omgsetup_rbenv 'bash'
+  _omgsetup_colorls
+  _omgsetup_zoxide 'bash'
+  _omgsetup_jenv
+  # _omgsetup_nvm
+  _omgsetup_fzf 'bash'
+  # _omgsetup_goenv
+  _omgsetup_kubectl 'bash'
+}
+#-------------------------------------------------------------------------------------#
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#---------------------------------- main -------------------------------------------#
+# declare
+export OMG_ROOT="$HOME"/.config/omg
+source "$OMG_ROOT"/env.sh 
+[[ -f "$OMG_ROOT"/env.local.sh ]] && source "$OMG_ROOT"/env.local.sh
+source "$OMG_ROOT"/hook.sh
+source "$OMG_ROOT"/paths.sh
+source "$OMG_ROOT"/aliases.sh
+source "$OMG_ROOT"/setup.sh
+
+# PATH
+omgpath
+# theme
+#source "$OMG_ROOT/omb/omb.sh" "$HOME/.oh-my-bash" "$HOME/.oh-my-bash/custom" "powerbash10k"
+# bindkey
+source "$OMG_ROOT"/omb/config/omb_bind.sh
+# alias
+omgalias
+# setup okg, e.g. rbenv, pyenv, etc.
+omgsetup
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#---------------------------------- 不用改 -------------------------------------------#
+[[ $OMG_HOOK_DEBUG == true ]] && echo "=>.bashrc: PATH=$PATH"
+#-------------------------------------------------------------------------------------#
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#

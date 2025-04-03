@@ -1,0 +1,31 @@
+1. 构建shell脚本
+1) 构建框架包(可不指定 -s)
+    -f build -D /path/to
+    -f build -d /path/to/dist_file
+    -f build -s /path/to/framework -d /path/to/dist_file
+2) 构建源代码包(必须指定 -s)
+    -f build -s /src/path -d /path/to/dist_file
+    -f build -s /src/path -D /path/to
+2. 发布shell脚本到 raw-hosted repository
+1) 发布脚本框架包(若不指定 -s)
+   若构件包不存在，会首先在临时目录构建框架包，然后自动发布到默认远程地址
+    -f deploy
+2) 发布shell脚本源码包
+    -f deploy -s /path/to/src -N /xx/xx.tar.gz
+    -f deploy -s /path/to/src -n https://xxxx/xx/xx/xx.tar.gz
+    -f deploy -s /path/to/src -T /path/to/dist_file -n https://xxx/xx/xx/xx.tar.gz
+    -f deploy -s /path/to/src -T /path/to/dist_file -N /xx/xx.tar.gz
+3. 重置本地框架脚本
+    -f reset
+    -f reset -n https://xx/xx/xx.tar.gz
+    -f reset -N /xx/xx/xx.tar.gz
+4. 下载构建包到本地
+1) 下载框架构件包到当前工作目录
+    -f download -O
+2) 下载框架构件包到指定目录
+    -f download -o /path/to/file
+2) 下载指定构件包到本地
+    -f download -n https://xx/xx/xx.tar.gz -O
+    -f download -n https://xx/xx/xx.tar.gz -o
+5. 调用公开库函数
+    -f call -- radp_os_disable_swap

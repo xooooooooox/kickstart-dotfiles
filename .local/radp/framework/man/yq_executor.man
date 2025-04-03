@@ -1,0 +1,6 @@
+打印yq解析结果
+1. 使用默认 yaml
+    -f run -e 'local' -t '-a' --yq "yq query str
+    -f run -e 'local' -t '-A' --yq "yq query str"
+2. 指定 Yaml file
+    -f run --yaml-file /path/to/yaml_file -t '-a' --yq "yq query str"

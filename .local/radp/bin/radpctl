@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+function main() {
+  local cur_dir radpctl_root
+  cur_dir="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+  radpctl_root=$(dirname "${cur_dir}")
+
+  # shellcheck source=./../framework/bootstrap.sh
+  source "$radpctl_root"/framework/bootstrap.sh
+}
+
+main "$@"

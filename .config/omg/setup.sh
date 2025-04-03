@@ -1,0 +1,1 @@
+../yadm/alt/.config/omg/setup.sh##os.Linux

@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# shellcheck source=./../../bootstrap.sh #TODO 根据实际情况，修改为正确的路径
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+# TODO 在这里定义 plugin public api
+
+#######################################
+# TODO 插件公开 API 示例
+# 命名规范: radp_plugin_xx_yyy
+# Arguments:
+#  None
+#######################################
+function radp_plugin_xx_yyy() { #TODO 修改 xx 为 plugin_name, yyy 随意自行定义
+  :
+}
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+
+#######################################
+# 初始化插件
+#
+# Globals
+#  g_plugin_xx_config - @see g_plugin_proxy_xx_str TODO 修改 xx 为 plugin_name
+#
+# Arguments:
+#  None
+# @see __framework_autoconfigure_plugins
+#######################################
+function __framework_plugin_xx_setup() { #TODO 修改 xx 为 plugin_name
+  # TODO Optional 在这里定义插件的初始化逻辑
+  :
+}
+
+function main() {
+  __framework_plugin_xx_setup #TODO 修改 xx 为 plugin_name
+}
+
+main

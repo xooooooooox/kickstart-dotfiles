@@ -1,0 +1,1 @@
+../yadm/alt/.config/omg/paths.sh##os.Linux

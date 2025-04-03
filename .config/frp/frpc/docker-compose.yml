@@ -1,0 +1,12 @@
+# 命令执行 docker-compose -f docker-compose.yml up -d
+services:
+  frpc:
+    image: fatedier/frpc:v0.60.0
+    hostname: frpc
+    container_name: frpc
+    volumes:
+      - "./frpc.toml:/frpc.toml"
+    command:
+      - "-c"
+      - "/frpc.toml"
+    network_mode: "host"

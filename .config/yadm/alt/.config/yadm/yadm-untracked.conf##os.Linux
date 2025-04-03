@@ -1,0 +1,56 @@
+yadm_tracked_recursively=(
+    .config
+    .tmux
+)
+
+yadm_tracked_nonrecursively=(
+    ~
+)
+
+ignore_files_and_dirs=(
+    .APKey.plist
+    .CFUserTextEncoding
+    .Xauthority
+    .appletviewer
+    .bash_history
+    .bashdb_hist
+    .config/.isolated-storage
+    .config/configstore
+    .config/filezilla
+    .config/jgit
+    .config/nvim/kickstart.nvim
+    .config/nvim/kickstart-modular.nvim/doc/tags
+    .config/nvim/kickstart-modular.nvim/lazy-lock.json
+    .config/octave
+    .config/clash
+    .config/wireshark
+    .gitflow_export
+    .install4j
+    .irb_history
+    .lesshst
+    .mysql_history
+    .node_path
+    .node_repl_history
+    .octave_hist
+    .octave_packages
+    .profile
+    .python_history
+    .serverauth.52540
+    .stCommitMsg
+    .wget-hsts
+    .viminfo
+    .zcompdump
+    .zsh_history
+)
+
+ignore_name_regex=(
+    .DS_Store
+    .padl
+    .bak
+    .zwc
+    .github
+    .zcompdump
+    Icon
+)
+
+

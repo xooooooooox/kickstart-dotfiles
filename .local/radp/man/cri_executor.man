@@ -1,0 +1,12 @@
+1. 安装(default user is x9x)
+    -f install -n docker [-u xxx]
+    -f install -n containerd [-u xxx]
+    -f install -n docker-compose [-v xxx]
+2. 重新安装
+    -f reinstall -n xxx [-u xxx]
+3. 卸载
+    -f uninstall -n xxx
+4. 镜像加速
+    -f acceleration -n xxx
+5. 普通用户可以直接执行 docker 命令
+    -f rootless -n docker -u xxx

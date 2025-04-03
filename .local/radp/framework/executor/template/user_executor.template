@@ -1,0 +1,123 @@
+#!/usr/bin/env bash
+# TODO 这是执行器脚本模板代码
+# TODO 复制脚本时，记得完成 TODO
+#
+# NOTE:
+# 1) 执行器脚本文件名要求: xx_executor.sh, xx 为 subcommand
+# 2) -f 白名单方法名规范: xx_executor_yyy, yyy 为白名单
+
+# shellcheck source=./../framework/bootstrap.sh #TODO 记得改为正确的路径，以支持代码补全
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#----------------------------------------------- executor private method ----------------------------------------------#
+# TODO 在这里定义 private method
+# TODO 方法名建议 以 _ 开头
+function __example_private_method() {
+    :
+}
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#----------------------------------------------- supported cli function ------------------------------------------------
+# TODO 在这部分定义 -f 支持的方法
+# TODO 方法名必须 xx_executor_yy, xx 为 subcmd
+# ↓↓↓ Note: 在这部分定义具体的函数
+function xx_executor_example() { #TODO 记得改这里，这只是一个示例方法，供 -f 调用的
+  radp_log_warn "这是一个示例"
+}
+# ↑↑↑
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#######################################
+# 命令行参数具体处理函数
+# 将对应的选项存储到关联数组中
+#
+# Arguments:
+#  1 - __nr_xx_executor_parsed_args__: 存储解析后的参数 #TODO 修改 xx 为 subcmd
+#######################################
+function __xx_executor_options_processor() {      #TODO 规范：修改方法名, xx 为subcommand
+  local -n __nr_xx_executor_parsed_args__=$1 # TODO 记得该变量名，xx 为 subcommand
+  shift
+  local -a remaining_args
+  radp_nr_cli_parse_common_options __nr_xx_executor_parsed_args__ remaining_args "$@" #TODO 记得改这里，是上面的 nameref 变量
+
+  local idx=0
+  while [[ idx -lt "${#remaining_args[@]}" ]]; do
+    case "${remaining_args[idx]}" in
+      --)
+        # 如果计算结果为0（即认为是 false），它会返回一个非零的退出状态
+        # 可能会导致脚本立即终止，
+        # || true，这样即使这个操作返回非零状态，也不会影响脚本继续执行
+        ((idx++)) || true
+        # 保存 -- 之后的参数
+        __nr_xx_executor_parsed_args__['extended_args']="${remaining_args[*]:idx}" # TODO 记得修改这里, xx 为 subcmd
+        radp_log_debug "cli extended args: ${__nr_xx_executor_parsed_args__['extended_args']}" # TODO 记得修改这里, xx 为 subcmd
+        break
+        ;;
+      *)
+        radp_log_error "Unknown option: ${remaining_args[idx]}. Try '-h' for more information"
+        return 1
+        ;;
+    esac
+  done
+}
+
+#######################################
+# 命令行参数解析器
+# Arguments:
+#   @ - 所有命令行参数
+#######################################
+function __xx_executor_cli_parser() { #TODO 规范：修改方法名, xx 为 subcommand
+  # 声明命令行参数
+  local short_opts="t:" #TODO 在这里定义命令行短选项参数, 无需分隔符
+  local long_opts="test:" #TODO 在这里定义命令行长选项参数，分隔符 ','
+  local -A opts_desc
+  opts_desc['test']='这只是个示例' #TODO 在这里定义命令行选项描述
+  # 获取命令行参数解析后的结果
+  local -A parsed_args
+  radp_nr_cli_parser -r parsed_args -o "$short_opts" -l "$long_opts" -d opts_desc -p "$(radp_cli_get_executor_options_processor_function_name)" -m "$(radp_cli_getexecutor_manual_file)" -- "$@"
+
+  # 命令分发
+  case "${parsed_args['function']}" in
+    example) #TODO 这只是个示例，请根据实际情况修改
+      # 这是一个示例方法
+      xx_executor_example #TODO 自定义方法 xx_executor_yy, xx 为 subcmd, yy 为 function
+      ;;
+    *)
+      radp_cli_print_help_of_invalid_subcmd_function "${parsed_args['function']}" "${BASH_SOURCE[0]}"
+      return 1
+      ;;
+  esac
+}
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#######################################
+# 声明当前 executor file 的全局常量
+# 规范
+# 示例: declare -gr g_executor_xx_default_yyy=default_value, 其中 xx 为 subcmd
+# Arguments:
+#  None
+#######################################
+function __declare_constants() {
+  # TODO: optional 如果有需要在这里定义常量
+  # 如果要定义当前脚本的全局变量，请统一定义在这里
+  # 1, 对于 framework executor 将会定义在 framework/includes/vars/constants/executor/constants_$subcmd.sh 中
+  # 2. 对于 user executor 你可以定义在这个方法中，也可以考虑定义在 lib 目录下
+  :
+}
+
+#######################################
+# 执行器主函数入口
+# Arguments:
+#  @ - 所有命令行参数
+#######################################
+function main() {
+  # shellcheck source=./../framework/executor/executor.sh
+  source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"/../framework/executor/executor.sh
+  __declare_constants
+  __xx_executor_cli_parser "$@" #TODO 记得修改调用的方法名 xx 为 subcmd
+}
+
+main "$@"
