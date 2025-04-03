@@ -13,6 +13,7 @@ _omg_alias_proxy(){
   alias disproxy='unset http_proxy https_proxy all_proxy'
   alias goproxy_clash="export https_proxy=http://${proxy_ip}:7890 http_proxy=http://${proxy_ip}:7890 all_proxy=socks5://${proxy_ip}:7891"
   alias goproxy_surge="export https_proxy=http://${proxy_ip}:6152 http_proxy=http://${proxy_ip}:6152 all_proxy=socks5://${proxy_ip}:6153"
+  alias goproxy_v2ray="export https_proxy=http://${proxy_ip}:20171 http_proxy=http://${20171}:7890"
 }
 
 _omg_alias_mac(){
