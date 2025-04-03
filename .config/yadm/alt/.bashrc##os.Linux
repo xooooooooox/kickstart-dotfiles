@@ -5,6 +5,7 @@
 omgalias(){
   _omg_alias_common
   _omg_alias_docker
+  _omg_alias_lazygit
   _omg_alias_proxy
 }
 

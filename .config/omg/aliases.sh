@@ -43,3 +43,7 @@ _omg_alias_docker() {
   alias	dcupd='docker compose up -d'
   alias	dcupdb='docker compose up -d --build'
 }
+
+_omg_alias_lazygit() {
+  alias lgyadm='lazygit --git-dir=$HOME/.local/share/yadm/repo.git --work-tree=$HOME'
+}
